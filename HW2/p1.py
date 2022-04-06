@@ -49,6 +49,7 @@ lam = 0.5                 # lambda term
 
 xi = np.ones(n)
 suboptimality = [f(xi) - f_star]
+f_best = f(xi) - f_star
 for i in range(N-1):
     
     fxi = f(xi)
@@ -69,7 +70,8 @@ for i in range(N-1):
     
     xi = x.value
     
-    suboptimality.append(f(xi) - f_star)
+    f_best = min(f_best, f(xi) - f_star)
+    suboptimality.append(f_best)
 
 
 plt.plot(np.arange(1,N+1), suboptimality)
